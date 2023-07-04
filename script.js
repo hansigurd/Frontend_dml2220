@@ -103,3 +103,9 @@ $(document).ready(function() {
             $('.send-button').removeClass('enabled').addClass('disabled');
         }
     }
+
+    $(document).ready(function() {
+        updateSendButtonState(); // Disable button at page load
+
+        $('#user_id, #user_input').on('input', updateSendButtonState);
+    });
