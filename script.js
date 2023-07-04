@@ -80,6 +80,7 @@ $(document).ready(function() {
             const delay = calculateDelay(words[index]);
             setTimeout(() => {
                 typewriterEffect(element, words, index + 1);
+                messagesDiv.scrollTop = messagesDiv.scrollHeight; // Scroll to bottom after each word is added
             }, delay);
         }
     }
