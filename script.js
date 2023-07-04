@@ -28,17 +28,20 @@ $(document).ready(function() {
     function sendMessage() {
         const session_id = userIdField.value;
         const userInput = messageInput.value;
-        if (session_id.trim() === '') {
-            alert('Error: User ID is required');
-            return;
-        }
         if (userInput.trim()) {
             const userMessage = document.createElement('div');
             userMessage.className = 'message user-message';
             userMessage.innerText = userInput;
             messagesDiv.appendChild(userMessage);
             messageInput.value = '';
-    
+        if (session_id.trim() === '') {
+            alert('Error: User ID is required');
+            return;
+        }
+        if (userInput.trim()) {
+            // Existing sendMessage logic...
+}
+
             typingIndicator.style.display = 'flex';
             $.ajax({
                 url: 'https://dml2220chatbot-6301f895d848.herokuapp.com/api/chat',
@@ -53,14 +56,14 @@ $(document).ready(function() {
                     let botResponse = data.bot_response;
                     botResponse = botResponse.replace(/\n/g, ' <br> ');
                     const botResponseWords = botResponse.split(' ');
-    
+
                     setTimeout(() => {
                         const gptMessage = document.createElement('div');
                         gptMessage.className = 'message gpt-message';
                         messagesDiv.appendChild(gptMessage);                   
                         messagesDiv.scrollTop = messagesDiv.scrollHeight;
                         typingIndicator.style.display = 'none'; // Hide the typing indicator here
-    
+
                         typewriterEffect(gptMessage, botResponseWords, 0);
                     }, 100);
                 },
@@ -70,6 +73,7 @@ $(document).ready(function() {
             });
         }
     }
+
     function typewriterEffect(element, words, index) {
         if (index < words.length) {
             element.innerHTML += (index > 0 ? ' ' : '') + words[index];
