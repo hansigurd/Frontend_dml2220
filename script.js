@@ -34,15 +34,8 @@ $(document).ready(function() {
             userMessage.innerText = userInput;
             messagesDiv.appendChild(userMessage);
             messageInput.value = '';
-        if (session_id.trim() === '') {
-            alert('Error: User ID is required');
-            return;
-        }
-        if (userInput.trim()) {
-            // Existing sendMessage logic...
-}
 
-            typingIndicator.style.display = 'flex';
+            typingIndicator.style.display = 'block';
             $.ajax({
                 url: 'https://dml2220chatbot-6301f895d848.herokuapp.com/api/chat',
                 type: 'post',
@@ -52,6 +45,7 @@ $(document).ready(function() {
                     session_id: session_id,
                     input: userInput
                 }),
+              
                 success: function(data) {
                     let botResponse = data.bot_response;
                     botResponse = botResponse.replace(/\n/g, ' <br> ');
@@ -62,7 +56,7 @@ $(document).ready(function() {
                         gptMessage.className = 'message gpt-message';
                         messagesDiv.appendChild(gptMessage);                   
                         messagesDiv.scrollTop = messagesDiv.scrollHeight;
-                        typingIndicator.style.display = 'none'; // Hide the typing indicator here
+                        typingIndicator.style.display = 'none';
 
                         typewriterEffect(gptMessage, botResponseWords, 0);
                     }, 100);
@@ -93,19 +87,3 @@ $(document).ready(function() {
         return wordDelay + randomDelay;
     }
 });
-   function updateSendButtonState() {
-        var userId = $('#user_id').val();
-        var userInput = $('#user_input').val();
-
-        if(userId && userInput) {
-            $('.send-button').removeClass('disabled').addClass('enabled');
-        } else {
-            $('.send-button').removeClass('enabled').addClass('disabled');
-        }
-    }
-
-    $(document).ready(function() {
-        updateSendButtonState(); // Disable button at page load
-
-        $('#user_id, #user_input').on('input', updateSendButtonState);
-    });
