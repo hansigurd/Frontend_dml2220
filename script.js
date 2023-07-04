@@ -86,7 +86,7 @@ $(document).ready(function() {
     }
 
     function calculateDelay(word) {
-        const baseDelay = 100;
+        const baseDelay = 50;
         const additionalDelayPerChar = 5;
         const delayVariability = 20;
         const wordDelay = baseDelay + word.length * additionalDelayPerChar;
