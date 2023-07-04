@@ -93,3 +93,13 @@ $(document).ready(function() {
         return wordDelay + randomDelay;
     }
 });
+    function updateSendButtonState() {
+        var userId = $('#user_id').val();
+        var userInput = $('#user_input').val();
+
+        if(userId && userInput) {
+            $('.send-button').removeClass('disabled').addClass('enabled');
+        } else {
+            $('.send-button').removeClass('enabled').addClass('disabled');
+        }
+    }
