@@ -8,28 +8,31 @@ body {
     height: 100vh;
     margin: 0;
     background-color: #f2f2f2;
-  }
+    font-size: 1em; /* 30% larger font */
+}
   
   .chat-container {
-    width: 500px;
+    width: 650px; /* 30% larger width */
     background-color: white;
+    position: relative;
     border: 1px solid #ddd;
-    padding: 30px;
+    padding: 39px; /* 30% larger padding */
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 13px; /* 30% larger gap */
   }
+
   
   .messages {
     flex-grow: 1;
     overflow-y: auto;
-    height: 500px;
+    height: 650px; /* 30% larger height */
   }
   
   .message {
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 5px;
+    padding: 13px; /* 30% larger padding */
+    border-radius: 6.5px; /* 30% larger border-radius */
+    margin-bottom: 6.5px; /* 30% larger margin-bottom */
   }
   
   .user-message {
@@ -52,30 +55,67 @@ body {
   }
   
   .id-input {
-    padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 25%;
+    padding: 10px; 
+    border: 2px solid #ddd;
+    border-radius: 5px; 
+    width: 25%; 
     margin-bottom: 0px;
   }
   
   .input-container {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 10px; 
     align-items: center;
   }
   
   .message-input {
     flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 15px; 
+    border: 2px solid #ddd;
+    border-radius: 5px; 
   }
   
   .typing-indicator {
     display: none;
-    font-size: 0.8em;
-    color: #999;
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em; 
+    color: #000;
+    z-index: 10; 
+    background: rgba(255, 255, 255, 0.7); 
+    border-radius: 10px;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .typing-indicator i {
+    margin-right: 5px; /* space between the icon and the text */
   }
   
+  
+  .send-button {
+    font-size: 1.5em;
+    padding: 11px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .send-button.enabled {
+    border: 0px solid #000;
+    background-color: #64FFD0;
+  }
+  
+  .send-button.enabled:hover {
+    background-color: #00CA98;
+  }
+  
+  .send-button.disabled {
+    border: 2px solid transparent;
+    background-color: transparent;
+    cursor: not-allowed;
+  }
