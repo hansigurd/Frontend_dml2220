@@ -35,6 +35,13 @@ $(document).ready(function() {
             messagesDiv.appendChild(userMessage);
             messageInput.value = '';
 
+        if (session_id.trim() === '') {
+                alert('Error: User ID is required');
+                return;
+            }
+        if (userInput.trim()) {
+    }
+
             typingIndicator.style.display = 'flex';
             $.ajax({
                 url: 'https://dml2220chatbot-6301f895d848.herokuapp.com/api/chat',
