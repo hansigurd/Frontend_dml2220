@@ -35,7 +35,7 @@ $(document).ready(function() {
             messagesDiv.appendChild(userMessage);
             messageInput.value = '';
 
-            typingIndicator.style.display = 'block';
+            typingIndicator.style.display = 'flex';
             $.ajax({
                 url: 'https://dml2220chatbot-6301f895d848.herokuapp.com/api/chat',
                 type: 'post',
@@ -45,7 +45,6 @@ $(document).ready(function() {
                     session_id: session_id,
                     input: userInput
                 }),
-              
                 success: function(data) {
                     let botResponse = data.bot_response;
                     botResponse = botResponse.replace(/\n/g, ' <br> ');
@@ -56,7 +55,7 @@ $(document).ready(function() {
                         gptMessage.className = 'message gpt-message';
                         messagesDiv.appendChild(gptMessage);                   
                         messagesDiv.scrollTop = messagesDiv.scrollHeight;
-                        typingIndicator.style.display = 'none';
+                        typingIndicator.style.display = 'none'; // Hide the typing indicator here
 
                         typewriterEffect(gptMessage, botResponseWords, 0);
                     }, 100);
