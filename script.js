@@ -89,19 +89,19 @@ $(document).ready(function() {
         return wordDelay + randomDelay;
     }
 });
-function updateSendButtonState() {
-    var userId = $('#user_id').val();
-    var userInput = $('.message-input').val();
+   function updateSendButtonState() {
+        var userId = $('#user_id').val();
+        var userInput = $('#user_input').val();
 
-    if(userId && userInput) {
-        $('.send-button').removeClass('disabled').addClass('enabled');
-    } else {
-        $('.send-button').removeClass('enabled').addClass('disabled');
+        if(userId && userInput) {
+            $('.send-button').removeClass('disabled').addClass('enabled');
+        } else {
+            $('.send-button').removeClass('enabled').addClass('disabled');
+        }
     }
-}
 
-$(document).ready(function() {
-    updateSendButtonState(); // Disable button at page load
+    $(document).ready(function() {
+        updateSendButtonState(); // Disable button at page load
 
-    $('#user_id, .message-input').on('input', updateSendButtonState);
-});
+        $('#user_id, #user_input').on('input', updateSendButtonState);
+    });
