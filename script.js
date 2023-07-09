@@ -5,16 +5,6 @@ $(document).ready(function() {
     const sendButton = document.getElementById('send');
     const typingIndicator = document.querySelector('.typing-indicator');
 
-    userIdField.addEventListener('blur', function() {
-        $.ajax({
-            url: 'https://dml2220chatbot-6301f895d848.herokuapp.com/api/start',
-            type: 'get',
-            data: {
-                id: userIdField.value
-            }
-        });
-    });
-
     sendButton.addEventListener('click', function() {
         sendMessage();
     });
@@ -24,7 +14,7 @@ $(document).ready(function() {
             sendMessage();
         }
     });
-  
+
     function sendMessage() {
         const session_id = userIdField.value;
         const userInput = messageInput.value;
@@ -35,16 +25,14 @@ $(document).ready(function() {
             messagesDiv.appendChild(userMessage);
             messageInput.value = '';
 
-        if (session_id.trim() === '') {
+            if (session_id.trim() === '') {
                 alert('Error: User ID is required');
                 return;
             }
-        if (userInput.trim()) {
-    }
 
             typingIndicator.style.display = 'flex';
             $.ajax({
-                url: 'https://dml2220chatbot-6301f895d848.herokuapp.com/api/chat',
+                url: 'https://dml2220chatbot-6301f895d848.herokuapp.com/api/chat', // Ensure this is your correct Heroku URL
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json',
@@ -94,19 +82,20 @@ $(document).ready(function() {
         return wordDelay + randomDelay;
     }
 });
-    function updateSendButtonState() {
-        var userId = $('#user_id').val();
-        var userInput = $('#user_input').val();
 
-        if(userId && userInput) {
-            $('.send-button').removeClass('disabled').addClass('enabled');
-        } else {
-            $('.send-button').removeClass('enabled').addClass('disabled');
-        }
+function updateSendButtonState() {
+    var userId = $('#user_id').val();
+    var userInput = $('#user_input').val();
+
+    if(userId && userInput) {
+        $('.send-button').removeClass('disabled').addClass('enabled');
+    } else {
+        $('.send-button').removeClass('enabled').addClass('disabled');
     }
+}
 
-    $(document).ready(function() {
-        updateSendButtonState(); // Disable button at page load
+$(document).ready(function() {
+    updateSendButtonState(); // Disable button at page load
 
-        $('#user_id, #user_input').on('input', updateSendButtonState);
-    });
+    $('#user_id, #user_input').on('input', updateSendButtonState);
+});
