@@ -50,7 +50,7 @@ body {
   .id-container {
     display: flex;
     justify-content: left;
-    gap: 0px;
+    gap: 10px; /* Spacing between the input and the dropdown */
     align-items: center;
   }
   
