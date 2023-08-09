@@ -18,6 +18,7 @@ $(document).ready(function() {
     function sendMessage() {
         const session_id = userIdField.value;
         const userInput = messageInput.value;
+        const modelSelection = document.getElementById('model_selection').value;
         if (userInput.trim()) {
             const userMessage = document.createElement('div');
             userMessage.className = 'message user-message';
@@ -38,7 +39,8 @@ $(document).ready(function() {
                 contentType: 'application/json',
                 data: JSON.stringify({
                     session_id: session_id,
-                    input: userInput
+                    input: userInput,
+                    model: modelSelection
                 }),
                 success: function(data) {
                     let botResponse = data.bot_response;
