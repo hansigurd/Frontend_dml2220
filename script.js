@@ -104,8 +104,15 @@ function updateSendButtonState() {
     }
 }
 
-$(document).ready(function() {
-    updateSendButtonState(); // Disable button at page load
+function updateSendButtonState() {
+    var userId = $('#user_id').val();
+    var userInput = $('#user_input').val();
 
-    $('#user_id, #user_input').on('input', updateSendButtonState);
-});
+    if(userId && userInput) {
+        $('.send-button').removeClass('disabled').addClass('enabled');
+        sendButton.disabled = false;  // Enable the button here
+    } else {
+        $('.send-button').removeClass('enabled').addClass('disabled');
+        sendButton.disabled = true;   // Disable the button here
+    }
+}
