@@ -132,7 +132,7 @@ body {
   transform: translate(-50%, -50%);
   border: 1px solid #000;
   height: 150px;  /* Added px for valid CSS */
-  width: 75%;
+  width: 75px;
   padding: 20px;  /* Added padding for spacing between content and border */
   border-radius: 8px;  /* Rounded corners */
   background-color: #ffffff;  /* White background */
