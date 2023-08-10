@@ -119,7 +119,7 @@ body {
     background-color: transparent;
     cursor: not-allowed;
   }
-  .message-input:disabled, .send-button:disabled {
+  .message-input:disabled {
     opacity: 0.5;
     cursor: not-allowed;
 }

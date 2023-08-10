@@ -79,6 +79,7 @@ $(document).ready(function() {
 
         if (index === words.length - 1) {
             messageInput.disabled = false;
+            console.log("Typewriter effect completed");
             updateSendButtonState(); // Update button state based on input conditions
         }
     }
@@ -107,11 +108,14 @@ function updateSendButtonState() {
 function updateSendButtonState() {
     var userId = $('#user_id').val();
     var userInput = $('#user_input').val();
+    console.log("UserId:", userId, "UserInput:", userInput); 
 
     if(userId && userInput) {
+        console.log("Enabling send button");
         $('.send-button').removeClass('disabled').addClass('enabled');
         sendButton.disabled = false;  // Enable the button here
     } else {
+        console.log("Disabling send button");  // Add this line
         $('.send-button').removeClass('enabled').addClass('disabled');
         sendButton.disabled = true;   // Disable the button here
     }
