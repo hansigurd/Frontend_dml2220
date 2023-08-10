@@ -114,3 +114,7 @@ $(document).ready(function() {
 
     $('#user_id, #user_input').on('input', updateSendButtonState);
 });
+// Logic for the consent pop-up
+document.getElementById('consentButton').addEventListener('click', function() {
+    document.getElementById('consentPopup').style.display = 'none';
+});
