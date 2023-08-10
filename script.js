@@ -30,6 +30,9 @@ $(document).ready(function() {
                 alert('Error: User ID is required');
                 return;
             }
+            // Disable the send button and input field while processing
+            messageInput.disabled = true;
+            sendButton.disabled = true;
 
             typingIndicator.style.display = 'flex';
             $.ajax({
@@ -72,6 +75,11 @@ $(document).ready(function() {
                 typewriterEffect(element, words, index + 1);
                 messagesDiv.scrollTop = messagesDiv.scrollHeight; // Scroll to bottom after each word is added
             }, delay);
+        }
+
+        if (index === words.length - 1) {
+            messageInput.disabled = false;
+            updateSendButtonState(); // Update button state based on input conditions
         }
     }
 
