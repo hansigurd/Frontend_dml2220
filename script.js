@@ -19,6 +19,7 @@ $(document).ready(function() {
         const session_id = userIdField.value;
         const userInput = messageInput.value;
         const modelSelection = document.getElementById('model_selection').value;
+        
         if (userInput.trim()) {
             const userMessage = document.createElement('div');
             userMessage.className = 'message user-message';
@@ -30,13 +31,14 @@ $(document).ready(function() {
                 alert('Error: User ID is required');
                 return;
             }
-            // Disable the send button and input field while processing
+
             messageInput.disabled = true;
             sendButton.disabled = true;
 
             typingIndicator.style.display = 'flex';
+
             $.ajax({
-                url: 'https://dml2220chatbot-6301f895d848.herokuapp.com/api/chat', // Ensure this is your correct Heroku URL
+                url: 'https://dml2220chatbot-6301f895d848.herokuapp.com/api/chat',
                 type: 'post',
                 dataType: 'json',
                 contentType: 'application/json',
@@ -55,7 +57,7 @@ $(document).ready(function() {
                         gptMessage.className = 'message gpt-message';
                         messagesDiv.appendChild(gptMessage);                   
                         messagesDiv.scrollTop = messagesDiv.scrollHeight;
-                        typingIndicator.style.display = 'none'; // Hide the typing indicator here
+                        typingIndicator.style.display = 'none';
 
                         typewriterEffect(gptMessage, botResponseWords, 0);
                     }, 100);
@@ -71,16 +73,16 @@ $(document).ready(function() {
         if (index < words.length) {
             element.innerHTML += (index > 0 ? ' ' : '') + words[index];
             const delay = calculateDelay(words[index]);
+
             setTimeout(() => {
                 typewriterEffect(element, words, index + 1);
-                messagesDiv.scrollTop = messagesDiv.scrollHeight; // Scroll to bottom after each word is added
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
             }, delay);
         }
 
         if (index === words.length - 1) {
             messageInput.disabled = false;
-            console.log("Typewriter effect completed");
-            updateSendButtonState(); // Update button state based on input conditions
+            updateSendButtonState();
         }
     }
 
@@ -90,33 +92,25 @@ $(document).ready(function() {
         const delayVariability = 20;
         const wordDelay = baseDelay + word.length * additionalDelayPerChar;
         const randomDelay = Math.random() * delayVariability;
+
         return wordDelay + randomDelay;
     }
+
+    function updateSendButtonState() {
+        const userId = $('#user_id').val();
+        const userInput = $('#user_input').val();
+
+        if (userId && userInput) {
+            $(sendButton).removeClass('disabled').addClass('enabled');
+            sendButton.disabled = false;
+        } else {
+            $(sendButton).removeClass('enabled').addClass('disabled');
+            sendButton.disabled = true;
+        }
+    }
+
+    // Initial setup
+    updateSendButtonState();
+
+    $('#user_id, #user_input').on('input', updateSendButtonState);
 });
-
-function updateSendButtonState() {
-    var userId = $('#user_id').val();
-    var userInput = $('#user_input').val();
-
-    if(userId && userInput) {
-        $('.send-button').removeClass('disabled').addClass('enabled');
-    } else {
-        $('.send-button').removeClass('enabled').addClass('disabled');
-    }
-}
-
-function updateSendButtonState() {
-    var userId = $('#user_id').val();
-    var userInput = $('#user_input').val();
-    console.log("UserId:", userId, "UserInput:", userInput); 
-
-    if(userId && userInput) {
-        console.log("Enabling send button");
-        $('.send-button').removeClass('disabled').addClass('enabled');
-        sendButton.disabled = false;  // Enable the button here
-    } else {
-        console.log("Disabling send button");  // Add this line
-        $('.send-button').removeClass('enabled').addClass('disabled');
-        sendButton.disabled = true;   // Disable the button here
-    }
-}
