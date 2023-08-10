@@ -123,14 +123,39 @@ body {
   opacity: 0.5;
   cursor: not-allowed;
 }
-/* Updated styles for the consent pop-up */
+/* Modern styles for the consent pop-up */
 .consent-popup {
   z-index: 9999; 
   position: fixed;
-  top: 50%;  /* Changed from 10% to 50% for vertical centering */
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   border: 1px solid #000;
-  height: 150; 
-  width: 75;
+  height: 150px;  /* Added px for valid CSS */
+  width: 75%;
+  padding: 20px;  /* Added padding for spacing between content and border */
+  border-radius: 8px;  /* Rounded corners */
+  background-color: #ffffff;  /* White background */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);  /* Subtle shadow for elevation */
+  text-align: center;  /* Centered text for better appearance */
+  font-family: Arial, sans-serif;  /* Default modern font */
+}
+
+.consent-popup p {
+  margin-bottom: 20px;  /* Spacing between the text and the button */
+}
+
+#consentButton {
+  padding: 10px 20px;
+  background-color: #00CA98;  /* Using a teal-like color */
+  border: none;
+  border-radius: 5px;  /* Slightly rounded button */
+  color: #ffffff;  /* White text for the button */
+  cursor: pointer;
+  font-weight: bold;  /* Bold text for the button */
+  transition: background-color 0.3s ease;  /* Smooth transition on hover */
+}
+
+#consentButton:hover {
+  background-color: #008a76;  /* Darker teal for hover effect */
 }
